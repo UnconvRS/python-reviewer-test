@@ -43,10 +43,8 @@ def kickoff_subprocess(cmd, log_file_name):
 
 def upload_output_to_S3(log_file_name):
     # context manager https://book.pythontips.com/en/latest/context_managers.html
-    with open(log_file_name, 'rb') as opened_file:
-        file = open(log_file_name, "rb")
+    with open(log_file_name, 'rb') as file:
         s3.upload_fileobj(file, "code-review-ex-04152022", log_file_name)
-        file.close()
 
 if __name__ == "__main__":
    main(sys.argv[1:])
